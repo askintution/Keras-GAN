@@ -120,6 +120,16 @@ class CGAN():
         valid = np.ones((batch_size, 1))
         fake = np.zeros((batch_size, 1))
 
+        """
+        discriminator:
+        判断两次
+        1. 根据images和labels(labels是0-9的数字)作为输入，输出是否为有效图片
+        2. 根据生成的图片和labels作为输入，输出为无效图片
+
+        generator:
+        1. 随机生成label(0-9的数字)
+        2. 根据输入noise,label,输出结果为有效的生成损失训练
+        """
         for epoch in range(epochs):
 
             # ---------------------

@@ -14,6 +14,11 @@ import sys
 
 import numpy as np
 
+
+"""
+1. 使用adam优化器
+
+"""
 class DCGAN():
     def __init__(self):
         # Input shape
@@ -116,6 +121,16 @@ class DCGAN():
         valid = np.ones((batch_size, 1))
         fake = np.zeros((batch_size, 1))
 
+        """
+        1. 从60000张照片中随机提取batch_size中图片
+        2. 随机生成高斯分布的噪声数据(batch_size,100)
+        3. 根据噪声数据生成图片
+
+        loss:
+        1. discriminator 将正常图片进行分类为Normal，计算LOSS
+        2. discriminator 将生成的图片进行分类为fake，计算LOSS
+        3. 全局的模型计算输入噪声，生成图片是否为合格图片的loss
+        """
         for epoch in range(epochs):
 
             # ---------------------

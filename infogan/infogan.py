@@ -27,7 +27,13 @@ class INFOGAN():
         optimizer = Adam(0.0002, 0.5)
         losses = ['binary_crossentropy', self.mutual_info_loss]
 
-        # Build and the discriminator and recognition network
+        
+        """
+        两个模型
+        discriminator: 图像embedding + sigmoid分类
+        辅助网络: 图像embedding + Dense 128为 + Dense class维度
+        """
+        # Build and the discriminator and recognition network, auxilliary:辅助的意思
         self.discriminator, self.auxilliary = self.build_disk_and_q_net()
 
         self.discriminator.compile(loss=['binary_crossentropy'],
